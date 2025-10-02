@@ -40,14 +40,12 @@ When the Pull Request is accepted, the action will be executed
 ### Notes
 
 - When the Pull Request has complete and merge to the target branch, this action realize a merge between that target branch an the branches selected in the commit message of the Pull Request.
-
 - The auto generate Pull Request has a tag called "automated-pr".
 
 ## Limitations
 
 1. Sync branch action only works with max two branches to sync at the same time.
 2. This actions only be executed when a Pull Request is completed.
-
 
 ## Exclude files
 
