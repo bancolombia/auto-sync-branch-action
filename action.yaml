@@ -49,7 +49,8 @@ runs:
         MERGE_COMMIT_SHA="${{ github.event.pull_request.merge_commit_sha }}"
         COMMIT_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA)
         echo "Mensaje del commit: $COMMIT_MESSAGE"
-        echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV 
+        echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+      shell: bash
 
     - name: Get first branch and second branch
       run: |
@@ -83,6 +84,7 @@ runs:
         else
             echo "No existe segunda rama para homologar"
         fi
+      shell: bash
 
     - name: Create Pull Request for the first branch
       run: |
