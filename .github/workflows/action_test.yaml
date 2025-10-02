@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
+      - uses: actions/checkout@v4   
       - name: Run Sync Branches Action
         uses: ./
         with:
