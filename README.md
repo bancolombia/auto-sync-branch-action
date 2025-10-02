@@ -65,12 +65,12 @@ If you want to exclude files in your branch to be sync, you can create a txt fil
 
 ```yaml
 - name: Run Sync Branches Action
-    uses: ./
-    with:
-      github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
-      user_name: 'github-actions[bot]'
-      user_email: 'github-actions[bot]@users.noreply.github.com'
-      ours_files_list: '.github/merge_ours_files.txt'
+  uses: ./
+  with:
+    github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+    user_name: 'github-actions[bot]'
+    user_email: 'github-actions[bot]@users.noreply.github.com'
+    ours_files_list: '.github/merge_ours_files.txt'
 ```
 
 ### Complete Workflow Example
@@ -88,12 +88,12 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - name: Run Sync Branches Action
-          uses: ./
-          with:
-            github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
-            user_name: 'github-actions[bot]'
-            user_email: 'github-actions[bot]@users.noreply.github.com'
-            ours_files_list: '.github/merge_ours_files.txt'
+        uses: ./
+        with:
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          ours_files_list: '.github/merge_ours_files.txt'
 ```
 
 ## Inputs
