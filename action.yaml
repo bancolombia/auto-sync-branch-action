@@ -48,9 +48,9 @@ runs:
       run: |
         MERGE_COMMIT_SHA="${{ github.event.pull_request.merge_commit_sha }}"
         FULL_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA)
-        echo "---> Mensaje completo del commit: $FULL_MESSAGE"
+        echo "---> Full commit message: $FULL_MESSAGE"
         COMMIT_MESSAGE=$(echo "$FULL_MESSAGE" | grep -oE '<[^>]+>' | head -n 1)
-        echo "---> Etiqueta extraída: $COMMIT_MESSAGE"
+        echo "---> Extracted tag: $COMMIT_MESSAGE"
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
       shell: bash
 
@@ -73,24 +73,24 @@ runs:
 
 
         if [ -n "$firstBranch" ]; then
-            echo "---> Existe primera rama para homologar"
+            echo "---> First branch exists to sync"
             echo "BASE_BRANCH=$firstBranch" >> $GITHUB_ENV
         else
-            echo "No existe primera rama para homologar"
+            echo "---> No first branch exists to sync"
             exit 1
         fi
 
         if [ -n "$secondBranch" ]; then
-            echo "---> Existe segunda rama para homologar"
+            echo "---> Second branch exists to sync"
             echo "SECOND_BRANCH=$secondBranch" >> $GITHUB_ENV
         else
-            echo "---> No existe segunda rama para homologar"
+            echo "---> No second branch exists to sync"
         fi
       shell: bash
 
     - name: Create Pull Request for the first branch
       run: |
-        .github/scripts/create_pr.sh
+        .github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
@@ -103,7 +103,7 @@ runs:
     - name: Create Pull Request for the second branch
       if: ${{ env.SECOND_BRANCH }}
       run: |
-        .github/scripts/create_pr.sh
+        .github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
