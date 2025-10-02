@@ -127,4 +127,4 @@ For support and questions:
 
 ## Changelog
 
-See [RELEASES](https://github.com/bancolombia/flutter-setup-action/releases) for version history and changes.
+See [RELEASES](https://github.com/bancolombia/sync-branches-action/releases) for version history and changes.
