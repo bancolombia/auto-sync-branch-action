@@ -45,7 +45,12 @@ When the Pull Request is accepted, the action will be executed
 ## Limitations
 
 1. Sync branch action only works with max two branches to sync at the same time.
+<<<<<<< HEAD
 2. This actions only be executed when a Pull Request is completed.
+=======
+2. This actions only be executed when a Pull Request is completed
+
+>>>>>>> 17192ce (docs: readme.md has been updated)
 
 ## Exclude files
 
