@@ -1,13 +1,13 @@
-# Sync branches action 🤖 
+# Sync branches action 🤖
 
 A GitHub Action to syncs branches on your repo 🎉. Automatize yours merge to others branches and creates the Pull Request automatically.
 
 ## Features
 
-- **Merge in other branches**: When a Pull Request is closed and merged, this actions detect from the title of commit the destinies branches to sync.
-- **Auto create a Pull Request**: When the syncs finalize the action will create a new pull requests to syncs the target branches.
+- **Merge in other branches**: When a Pull Request is closed and merged, the action detect from the title of commit the destinies branches to sync.
+- **Auto create a Pull Request**: When the syncs finish the action will create a new pull requests to syncs the target branches.
 - **Multiple branch Support**: The action support max two branch to sync.
-- **Flexible config**: This actions provide multiple forms to config, especially for the files that you don't like to merge.
+- **Flexible config**: This action provide multiple forms to config, especially for the files that you don't like to merge.
 - **Message and log**: This action provide a clear log that allows you to see what happend when is running.
 - **Easy to use**: Just works when a Pull Request is accepted.
 
@@ -44,7 +44,7 @@ When the Pull Request has complete and merge to the target branch, this action r
 ## Limitations
 
 1. Sync branch action only works with max two branches to sync at the same time.
-2. This actions only be executed when a Pull Request is completed 
+2. This actions only be executed when a Pull Request is completed
 
 
 ## Exclude files
