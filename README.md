@@ -45,6 +45,7 @@ When the Pull Request has complete and merge to the target branch, this action r
 
 Sync branch action only works with max two branches to sync at the same time.
 
+
 ## Exclude files
 
 If you want to exclude files in your branch to be sync, you can create a txt file that contains those files, for example:
@@ -63,49 +64,36 @@ If you want to exclude files in your branch to be sync, you can create a txt fil
 ### Advanced Configuration
 
 ```yaml
-- name: Sync branch action
-  uses: bancolombia/sync-branch-action@v1
-  with:
-    channel: 'stable'
-    flutter-version: '3.32.0'
-    java-version: '17'
-    cache: 'true'
-    cache-key-suffix: 'v1'
+- name: Run Sync Branches Action
+    uses: ./
+    with:
+      github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+      user_name: 'github-actions[bot]'
+      user_email: 'github-actions[bot]@users.noreply.github.com'
+      ours_files_list: '.github/merge_ours_files.txt'
 ```
 
 ### Complete Workflow Example
 
 ```yaml
-name: Flutter CI
+name: Sync Branches Action Test
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    types: [closed]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Setup Flutter
-      uses: bancolombia/flutter-setup-action@v1
-      with:
-        channel: 'stable'
-        flutter-version: 'latest'
-        java-version: '17'
-        cache: 'true'
-    
-    - name: Get dependencies
-      run: flutter pub get
-    
-    - name: Run tests
-      run: flutter test
-    
-    - name: Build APK
-      run: flutter build apk
+      - name: Run Sync Branches Action
+          uses: ./
+          with:
+            github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+            user_name: 'github-actions[bot]'
+            user_email: 'github-actions[bot]@users.noreply.github.com'
+            ours_files_list: '.github/merge_ours_files.txt'
 ```
 
 ## Inputs
