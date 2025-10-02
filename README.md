@@ -11,7 +11,6 @@ A GitHub Action to syncs branches on your repo 🎉. Automatize yours merge to o
 - **Message and log**: This action provide a clear log that allows you to see what happend when is running.
 - **Easy to use**: Just works when a Pull Request is accepted.
 
-
 ## How it works
 
 ### Trigger
@@ -27,7 +26,7 @@ The action takes the names of the branch to sync with you commit message of your
 ![merge title](./docs/img/merge_image.png)
 
 > [!IMPORTANT]
-> This sentence must be in the last part of the commit message.
+> It is recommended that the sentence is at the end of the commit message.
 
 When the Pull Request is accepted, the action will be executed
 
@@ -35,7 +34,7 @@ When the Pull Request is accepted, the action will be executed
 
 **namebranch2**: The name of the seconds branch to sync.
 
-> If you want a sync just one branch, your sentence must be: \<namebranch1>
+If you want a sync just one branch, your sentence must be: \<namebranch1>
 
 ### Notes
 
@@ -43,7 +42,8 @@ When the Pull Request has complete and merge to the target branch, this action r
 
 ## Limitations
 
-Sync branch action only works with max two branches to sync at the same time.
+1. Sync branch action only works with max two branches to sync at the same time.
+2. This actions only be executed when a Pull Request is completed 
 
 
 ## Exclude files
@@ -87,6 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
+      - uses: actions/checkout@v4   
       - name: Run Sync Branches Action
         uses: ./
         with:
@@ -98,14 +99,12 @@ jobs:
 
 ## Inputs
 
-| Input | Description | Required | Default | Examples |
-|-------|-------------|----------|---------|----------|
-| `channel` | Flutter channel to install | No | `stable` | `stable`, `beta`, `dev` |
-| `flutter-version` | Exact Flutter version or "latest" | No | `latest` | `3.32.0`, `latest` |
-| `java-version` | Temurin Java version (empty to skip) | No | `17` | `11`, `17`, `21` |
-| `cache` | Enable caching for faster builds | No | `true` | `true`, `false` |
-| `cache-key-suffix` | Suffix for manual cache invalidation | No | `""` | `v1`, `2024-01` |
-
+| Input | Description | Required | Default |
+|-------|-------------|----------|---------|
+| `github_token` | GitHub token with permissions to create branches and PRs | Yes | - |
+| `user_name` | Git username for commit history | Yes | - |
+| `user_email` | Git user email for commit history | Yes | - |
+| `ours_files_list` | Path to the file listing files to resolve as "ours" during conflicts | No | `.github/merge_ours_files.txt` |
 
 
 ## Contributing
