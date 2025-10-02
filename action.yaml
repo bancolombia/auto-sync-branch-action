@@ -47,8 +47,10 @@ runs:
     - name: Get PullRequest Message
       run: |
         MERGE_COMMIT_SHA="${{ github.event.pull_request.merge_commit_sha }}"
-        COMMIT_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA | tail -n 1)
-        echo "Mensaje del commit: $COMMIT_MESSAGE"
+        FULL_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA)
+        echo "---> Mensaje completo del commit: $FULL_MESSAGE"
+        COMMIT_MESSAGE=$(echo "$FULL_MESSAGE" | grep -oE '<[^>]+>' | head -n 1)
+        echo "---> Etiqueta extraída: $COMMIT_MESSAGE"
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
       shell: bash
 
@@ -66,12 +68,12 @@ runs:
           secondBranch=""
         fi
 
-        echo "firstBranch: $firstBranch"
-        echo "secondBranch: $secondBranch"
+        echo "---> firstBranch: $firstBranch"
+        echo "---> secondBranch: $secondBranch"
 
 
         if [ -n "$firstBranch" ]; then
-            echo "Existe primera rama para homologar"
+            echo "---> Existe primera rama para homologar"
             echo "BASE_BRANCH=$firstBranch" >> $GITHUB_ENV
         else
             echo "No existe primera rama para homologar"
@@ -79,10 +81,10 @@ runs:
         fi
 
         if [ -n "$secondBranch" ]; then
-            echo "Existe segunda rama para homologar"
+            echo "---> Existe segunda rama para homologar"
             echo "SECOND_BRANCH=$secondBranch" >> $GITHUB_ENV
         else
-            echo "No existe segunda rama para homologar"
+            echo "---> No existe segunda rama para homologar"
         fi
       shell: bash
 
