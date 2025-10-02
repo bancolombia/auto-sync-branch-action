@@ -47,7 +47,7 @@ runs:
     - name: Get PullRequest Message
       run: |
         MERGE_COMMIT_SHA="${{ github.event.pull_request.merge_commit_sha }}"
-        COMMIT_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA)
+        COMMIT_MESSAGE=$(git log -1 --pretty=%B $MERGE_COMMIT_SHA | tail -n 1)
         echo "Mensaje del commit: $COMMIT_MESSAGE"
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
       shell: bash
