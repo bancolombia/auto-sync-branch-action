@@ -73,7 +73,7 @@ runs:
 
 
         if [ -n "$firstBranch" ]; then
-            echo "---> First branch exists to homologation"
+            echo "---> First branch exists to sync"
             echo "BASE_BRANCH=$firstBranch" >> $GITHUB_ENV
         else
             echo "---> No first branch exists to sync"
@@ -81,10 +81,10 @@ runs:
         fi
 
         if [ -n "$secondBranch" ]; then
-            echo "---> Second branch exists to homologation"
+            echo "---> Second branch exists to sync"
             echo "SECOND_BRANCH=$secondBranch" >> $GITHUB_ENV
         else
-            echo "---> No second branch exists to homologation"
+            echo "---> No second branch exists to sync"
         fi
       shell: bash
 
