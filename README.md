@@ -34,7 +34,8 @@ When the Pull Request is accepted, the action will be executed
 
 **namebranch2**: The name of the seconds branch to sync.
 
-If you want a sync just one branch, your sentence must be: \<namebranch1>
+> [!TIP]
+> If you want a sync just one branch, your sentence must be: \<namebranch1>
 
 ### Notes
 
@@ -51,6 +52,8 @@ When the Pull Request has complete and merge to the target branch, this action r
 If you want to exclude files in your branch to be sync, you can create a txt file that contains those files, for example:
 
 ![exclude_file](./docs/img/exclude_files.png)
+
+This file can selected in the ours_files_list input
 
 ## Usage
 
