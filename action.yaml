@@ -1,4 +1,4 @@
-name: Auto branch sync
+name: Auto sync branch action
 author: Bancolombia
 description: >
   Automates branch sync and pull request creation with automatic conflict resolution

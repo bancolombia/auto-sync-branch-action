@@ -1,4 +1,4 @@
-# Auto branch sync 🤖
+# Auto sync branch action 🤖
 
 A GitHub Action to syncs branches on your repo 🎉. Automatize yours merge to others branches and creates the Pull Request automatically.
 
@@ -60,17 +60,17 @@ This file can selected in the ours_files_list input
 ### Basic Setup
 
 ```yaml
-- name: Auto branch sync
-  uses: bancolombia/auto-branch-sync@v1
+- name: Auto sync branch action
+  uses: bancolombia/auto-sync-branch-action@v1
 ```
 
 ### Advanced Configuration
 
 ```yaml
-- name: Auto branch sync
-  uses: bancolombia/auto-branch-sync@v1
+- name: Auto sync branch action
+  uses: bancolombia/auto-sync-branch-action@v1
   with:
-    github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+    github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
     user_name: 'github-actions[bot]'
     user_email: 'github-actions[bot]@users.noreply.github.com'
     ours_files_list: '.github/merge_ours_files.txt'
@@ -79,7 +79,7 @@ This file can selected in the ours_files_list input
 ### Complete Workflow Example
 
 ```yaml
-name: Auto branch sync
+name: Auto sync branch action
 
 on:
   pull_request:
@@ -91,8 +91,8 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4   
-      - name: Run auto branch sync
-        uses: bancolombia/auto-branch-sync@v1
+      - name: Run auto sync branch action
+        uses: bancolombia/auto-sync-branch-action@v1
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           user_name: 'github-actions[bot]'
@@ -127,4 +127,4 @@ For support and questions:
 
 ## Changelog
 
-See [RELEASES](https://github.com/bancolombia/sync-branches-action/releases) for version history and changes.
+See [RELEASES](https://github.com/bancolombia/auto-sync-branch-action/releases) for version history and changes.
