@@ -31,13 +31,6 @@ runs:
         ref: ${{ github.ref_name }}
         fetch-depth: 0
 
-    - name: Checkout action repository
-      uses: actions/checkout@v4
-      with:
-        repository: bancolombia/auto-branch-sync
-        path: .action-temp
-        token: ${{ inputs.github_token }}
-
     - name: Create labels if not exist
       run: |
         gh label create "automated-pr" --color "f1c232" --description "Branch homologation PR" || echo "Label 'automated-pr' already exists"
@@ -97,7 +90,7 @@ runs:
 
     - name: Create Pull Request for the first branch
       run: |
-        bash .action-temp/.github/scripts/sync_branch.sh
+        bash $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
@@ -110,7 +103,7 @@ runs:
     - name: Create Pull Request for the second branch
       if: ${{ env.SECOND_BRANCH }}
       run: |
-        bash .action-temp/.github/scripts/sync_branch.sh
+        bash $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
