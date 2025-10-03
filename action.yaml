@@ -90,7 +90,7 @@ runs:
 
     - name: Create Pull Request for the first branch
       run: |
-        bash $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
+        $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
@@ -103,7 +103,7 @@ runs:
     - name: Create Pull Request for the second branch
       if: ${{ env.SECOND_BRANCH }}
       run: |
-        bash $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
+        $GITHUB_ACTION_PATH/.github/scripts/sync_branch.sh
       shell: bash
       env:
         GH_TOKEN: ${{ inputs.github_token }}
