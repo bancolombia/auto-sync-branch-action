@@ -61,14 +61,14 @@ This file can selected in the ours_files_list input
 
 ```yaml
 - name: Sync branch action
-  uses: bancolombia/sync-branch-action@v1
+  uses: bancolombia/sync-branches-action@v1
 ```
 
 ### Advanced Configuration
 
 ```yaml
 - name: Run Sync Branches Action
-  uses: ./
+  uses: bancolombia/sync-branches-action@v1
   with:
     github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
     user_name: 'github-actions[bot]'
@@ -92,7 +92,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4   
       - name: Run Sync Branches Action
-        uses: ./
+        uses: bancolombia/sync-branches-action@v1
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
           user_name: 'github-actions[bot]'
