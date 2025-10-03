@@ -1,4 +1,4 @@
-# Sync branches action 🤖
+# Auto branch sync 🤖
 
 A GitHub Action to syncs branches on your repo 🎉. Automatize yours merge to others branches and creates the Pull Request automatically.
 
@@ -60,15 +60,15 @@ This file can selected in the ours_files_list input
 ### Basic Setup
 
 ```yaml
-- name: Sync branch action
-  uses: bancolombia/sync-branches-action@v1
+- name: Auto branch sync
+  uses: bancolombia/auto-branch-sync@v1
 ```
 
 ### Advanced Configuration
 
 ```yaml
-- name: Run Sync Branches Action
-  uses: bancolombia/sync-branches-action@v1
+- name: Auto branch sync
+  uses: bancolombia/auto-branch-sync@v1
   with:
     github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
     user_name: 'github-actions[bot]'
@@ -79,7 +79,7 @@ This file can selected in the ours_files_list input
 ### Complete Workflow Example
 
 ```yaml
-name: Sync Branches Action Test
+name: Auto branch sync
 
 on:
   pull_request:
@@ -91,10 +91,10 @@ jobs:
     if: github.event.pull_request.merged == true
     steps:
       - uses: actions/checkout@v4   
-      - name: Run Sync Branches Action
-        uses: bancolombia/sync-branches-action@v1
+      - name: Run auto branch sync
+        uses: bancolombia/auto-branch-sync@v1
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN_JF }}
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           ours_files_list: '.github/merge_ours_files.txt'

@@ -1,7 +1,7 @@
-name: Sync branch action
+name: Auto branch sync
 author: Bancolombia
 description: >
-  Automates branch homologation and pull request creation with automatic conflict resolution
+  Automates branch sync and pull request creation with automatic conflict resolution
 branding:
   icon: "git-merge"
   color: "orange"
