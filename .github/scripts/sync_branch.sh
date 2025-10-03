@@ -111,8 +111,8 @@ Pull Request origen de los cambios: #$PR_NUMBER
 resolve #" \
     --label "automated-pr"
 else
-echo "---> A Pull Request already exists for this homologation: $EXISTING_PR"
-echo "---> The PR branch has been updated with the latest changes from '$SOURCE_BRANCH'."
+    echo "---> A Pull Request already exists for this homologation: $EXISTING_PR"
+    echo "---> The PR branch has been updated with the latest changes from '$SOURCE_BRANCH'."
 fi
 
 echo "===> Powered by Galatea 🐺, Grupo Cibest ❤️"
