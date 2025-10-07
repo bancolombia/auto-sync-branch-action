@@ -79,24 +79,37 @@ This file can selected in the ours_files_list input
 ### Complete Workflow Example
 
 ```yaml
-name: Auto sync branch action
+name: Auto sync branches action
 
 on:
   pull_request:
     types: [closed]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  create-pr-with-gh:
     if: github.event.pull_request.merged == true
+    name: Run auto sync branches action
+    runs-on:
+      group: Temporal-Github
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
-      - uses: actions/checkout@v4   
-      - name: Run auto sync branch action
+      - uses: actions/checkout@v4
+      
+      - name: Generate a token of Github APP
+        id: generate_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ SECRERT.APP-ID }}
+          private-key: ${{ SECRET.APP-PRIVATEKEY }}
+
+      - name: Run Sync Branches Action
         uses: bancolombia/auto-sync-branch-action@v1
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          github_token: ${{ steps.generate_token.outputs.token }}
+          user_name: 'Release bot'
+          user_email: 'release-bot@bancolombia.com.co'
           ours_files_list: '.github/merge_ours_files.txt'
 ```
 
