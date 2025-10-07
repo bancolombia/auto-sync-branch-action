@@ -108,8 +108,8 @@ jobs:
         uses: bancolombia/auto-sync-branch-action@v1
         with:
           github_token: ${{ steps.generate_token.outputs.token }}
-          user_name: 'Release bot'
-          user_email: 'release-bot@bancolombia.com.co'
+          user_name: 'USER_NAME'
+          user_email: 'USER_EMAIL'
           ours_files_list: '.github/merge_ours_files.txt'
 ```
 
